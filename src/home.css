@@ -1,0 +1,333 @@
+/* Self-hosted Sunday Ridges font. Place files under public/fonts/ */
+@font-face {
+  font-family: 'Sunday Ridges';
+  src: url('/fonts/SundayRidges.woff2') format('woff2'),
+       url('/fonts/SundayRidges.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Retroversion font. Place files under public/fonts/ */
+@font-face {
+  font-family: 'Retroversion';
+  src: url('/fonts/Retroversion-Regular.otf') format('opentype'),
+       url('/fonts/Retroversion-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+.home-container {
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: flex-start; /* top */
+  justify-content: flex-start; /* left */
+  background-color: #EEE5DA; /* requested background */
+  padding: 1.5rem; /* space from edges */
+  padding-right: 0; /* allow underline to reach extreme right */
+  box-sizing: border-box;
+  position: relative; /* anchor absolute elements */
+}
+
+.home-nav {
+  position: fixed;
+  top: 0.75rem;
+  right: 0.75rem;
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  z-index: 10;
+}
+
+.home-nav__link {
+  color: #262424;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: clamp(0.85rem, 1.6vw, 2rem);
+  font-family: 'Sunday Ridges', ui-serif, Georgia, 'Times New Roman', Times, serif;
+  border-bottom: 2px solid transparent;
+  padding: 2rem 0.1rem;
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.home-nav__link:not(:last-child)::after {
+  content: '|';
+  font-family: 'Sunday Ridges', ui-serif, Georgia, 'Times New Roman', Times, serif;
+  font-weight: 400;
+  font-size: 0.95em; /* small vertical line */
+  color: #262424;
+  margin-left: 0.8rem;
+  margin-right: 0.2rem;
+}
+
+.home-nav__link:hover {
+  border-bottom-color: transparent;
+  text-decoration: none;
+}
+
+.home-nav__link:focus,
+.home-nav__link:active {
+  outline: none;
+  border-bottom-color: transparent;
+  text-decoration: none;
+}
+
+/* Ensure no underline in any state */
+.home-nav__link,
+.home-nav__link:visited,
+.home-nav__link:hover,
+.home-nav__link:active,
+.home-nav__link:focus {
+  text-decoration: none;
+  border-bottom: 0;
+}
+
+.home-left {
+  display: block; /* allow underline to stretch */
+  width: 100%;
+}
+
+.home-right {
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  right: 14rem; /* offset from extreme right */
+  top: clamp(4rem, 40vh, 16rem);
+}
+
+.home-arch {
+  /* Responsive arch container (rounded top, flatter bottom) */
+  width: clamp(200px, 25vw, 380px);
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+  background: transparent;
+  border: 2px solid #262424;
+  /* Make the top a big dome and the bottom lightly rounded */
+  border-radius: 9999px 9999px 16px 16px / 75% 75% 16px 16px;
+}
+
+.home-photo {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.home-title {
+  margin: 0;
+  color: #262424; /* requested text color */
+  font-family: 'Sunday Ridges', ui-serif, Georgia, 'Times New Roman', Times, serif;
+  text-align: left;
+  line-height: 1.05;
+  letter-spacing: 0.3px;
+  /* Smaller responsive size */
+  font-size: clamp(1.5rem, 4.5vw, 2.75rem);
+}
+
+.first-name,
+.last-name {
+  display: inline-block;
+}
+
+.home-title-row {
+  display: flex;
+  align-items: flex-end;
+  gap: 1rem;
+  width: 100%;
+}
+
+.home-title-line {
+  flex: 1 1 auto;
+  height: 2px;
+  background: #262424;
+  transform: translateY(-1.1rem);
+}
+
+.home-about {
+  position: absolute;
+  left: clamp(2.5rem, 12vw, 6rem);
+  top: clamp(3rem, 38vh, 14rem);
+  max-width: clamp(280px, 35vw, 520px);
+  color: #262424;
+}
+
+.home-about__text {
+  margin: 0 0 1.25rem 0;
+  font-family: 'Libre Caslon Display', serif;
+  font-weight: 900; /* Extra Bold */
+  font-size: clamp(1.1rem, 2.2vw, 1.5rem); /* Big text */
+  line-height: 1.6;
+  text-align: left;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.home-about__text:last-child {
+  margin-bottom: 0;
+}
+
+.home-greeting {
+  position: absolute;
+  left: clamp(5rem, 20vw, 12rem);
+  top: clamp(3rem, 38vh, 14rem);
+  color: #262424;
+  font-family: 'Sunday Ridges', ui-serif, Georgia, 'Times New Roman', Times, serif;
+  font-size: clamp(2.5rem, 4vw, 3rem);
+  font-weight: 500;
+  line-height: 1.3;
+  text-align: left;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.greeting-name {
+  display: block;
+  margin-top: 0.3rem;
+}
+
+.home-roles {
+  position: absolute;
+  left: clamp(5rem, 20vw, 12rem);
+  top: clamp(12rem, 60vh, 28rem);
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: clamp(1.5rem, 3.5vw, 2.8rem);
+  color: #262424;
+}
+
+.home-roles__label {
+  font-family: 'Sunday Ridges', ui-serif, Georgia, 'Times New Roman', Times, serif;
+  font-weight: 500;
+  font-size: inherit;
+}
+
+.home-roles__text {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-family: 'Retroversion', serif;
+  white-space: nowrap;
+  font-size: inherit;
+  min-height: 1.2em;
+}
+
+.home-roles__cursor {
+  display: inline-block;
+  width: 0.15em;
+  height: 1.2em;
+  background-color: #262424;
+  animation: home-cursor-blink 1s steps(2, start) infinite;
+  margin-left: 0.25rem;
+}
+
+.home-social {
+  position: absolute;
+  left: clamp(5rem, 20vw, 12rem);
+  top: clamp(20rem, 75vh, 42rem);
+  display: flex;
+  align-items: center;
+  gap: 5rem;
+  margin-top: 1rem;
+  padding: 1.5rem 2.5rem;
+  border: 2px solid #262424;
+  border-radius: 999px;
+  background-color: rgba(38, 36, 36, 0.08);
+  backdrop-filter: blur(6px);
+}
+
+.home-social__link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #262424;
+  text-decoration: none;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  width: 32px;
+  height: 32px;
+}
+
+.home-social__link:hover {
+  opacity: 0.7;
+  transform: translateY(-2px);
+}
+
+.home-social__link svg {
+  width: 100%;
+  height: 100%;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+@keyframes home-cursor-blink {
+  0%,
+  50% {
+    opacity: 1;
+  }
+  51%,
+  100% {
+    opacity: 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .home-container {
+    padding: 1.25rem;
+  }
+  .home-nav {
+    top: 0.5rem;
+    right: 0.5rem;
+    gap: 0.75rem;
+  }
+  .home-right {
+    right: 1.25rem;
+    top: 1rem;
+  }
+  .home-about {
+    left: 1.75rem;
+    top: 1rem;
+    max-width: calc(100% - 2.5rem);
+  }
+  .home-greeting {
+    left: 1.75rem;
+    top: 1rem;
+  }
+  .home-roles {
+    left: 1.75rem;
+    top: 7rem;
+    gap: 0.5rem;
+    font-size: clamp(1rem, 6vw, 1.75rem);
+  }
+  .home-roles__text {
+    min-height: 1.1em;
+  }
+  .home-roles__cursor {
+    height: 1.1em;
+  }
+  .home-social {
+    left: 1.75rem;
+    top: 10rem;
+    gap: 1rem;
+    padding: 1rem 1.5rem;
+    border-radius: 999px;
+  }
+  .home-social__link {
+    width: 28px;
+    height: 28px;
+  }
+}
+
+
