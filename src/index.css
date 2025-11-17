@@ -3,7 +3,7 @@
   line-height: 1.5;
   font-weight: 400;
   color: #262424;
-  background-color: #EEE5DA; /* Make full page background match design */
+  background-color: #EEE5DA; 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -49,4 +49,4 @@ button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
-/* Disable automatic color-scheme overrides to keep requested palette */
+
