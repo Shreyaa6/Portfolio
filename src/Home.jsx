@@ -89,6 +89,7 @@ function Home() {
   const [roleIndex, setRoleIndex] = useState(0)
   const [displayedRole, setDisplayedRole] = useState('')
   const [scrollProgress, setScrollProgress] = useState(0)
+  const [isMobileNavOpen, setMobileNavOpen] = useState(false)
   const carouselRef = useRef(null)
   const cardsRef = useRef({})
   const projectsSectionRef = useRef(null)
@@ -198,14 +199,95 @@ function Home() {
     }
   }, [])
 
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth > 768) {
+        setMobileNavOpen(false)
+      }
+    }
+
+    window.addEventListener('resize', handleResize)
+    return () => window.removeEventListener('resize', handleResize)
+  }, [])
+
+  useEffect(() => {
+    if (isMobileNavOpen) {
+      // Prevent body scroll when menu is open
+      document.body.style.overflow = 'hidden'
+      document.body.style.position = 'fixed'
+      document.body.style.width = '100%'
+    } else {
+      // Restore body scroll when menu is closed
+      document.body.style.overflow = ''
+      document.body.style.position = ''
+      document.body.style.width = ''
+    }
+
+    return () => {
+      // Cleanup: restore scroll on unmount
+      document.body.style.overflow = ''
+      document.body.style.position = ''
+      document.body.style.width = ''
+    }
+  }, [isMobileNavOpen])
+
+  const closeMobileNav = () => setMobileNavOpen(false)
+
   return (
     <>
     <main className="home-container">
       <nav className="home-nav" aria-label="Primary">
-        <a href="#about" className="home-nav__link">About me</a>
-        <a href="#tech" className="home-nav__link">Tech stacks</a>
-        <a href="#projects" className="home-nav__link">Projects</a>
-        <a href="#contact" className="home-nav__link">Contact me</a>
+        <div className="home-nav__links">
+          <a href="#about" className="home-nav__link">About me</a>
+          <a href="#tech" className="home-nav__link">Tech stacks</a>
+          <a href="#projects" className="home-nav__link">Projects</a>
+          <a href="#contact" className="home-nav__link">Contact me</a>
+        </div>
+        <button
+          className={`home-nav__hamburger ${isMobileNavOpen ? 'is-open' : ''}`}
+          type="button"
+          aria-label="Toggle navigation menu"
+          aria-expanded={isMobileNavOpen}
+          onClick={() => setMobileNavOpen((prev) => !prev)}
+        >
+          <span />
+          <span />
+          <span />
+        </button>
+        {isMobileNavOpen && (
+          <div 
+            className="home-nav__backdrop"
+            onClick={closeMobileNav}
+            aria-hidden="true"
+          />
+        )}
+        <div
+          className={`home-nav__drawer ${
+            isMobileNavOpen ? 'home-nav__drawer--open' : ''
+          }`}
+        >
+          <button
+            className="home-nav__drawer-close"
+            type="button"
+            aria-label="Close navigation menu"
+            onClick={closeMobileNav}
+          >
+            <span></span>
+            <span></span>
+          </button>
+          <a href="#about" className="home-nav__drawer-link" onClick={closeMobileNav}>
+            About me
+          </a>
+          <a href="#tech" className="home-nav__drawer-link" onClick={closeMobileNav}>
+            Tech stacks
+          </a>
+          <a href="#projects" className="home-nav__drawer-link" onClick={closeMobileNav}>
+            Projects
+          </a>
+          <a href="#contact" className="home-nav__drawer-link" onClick={closeMobileNav}>
+            Contact me
+          </a>
+        </div>
       </nav>
       <div className="home-left">
         <div className="home-title-row">
